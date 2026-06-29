@@ -7,21 +7,26 @@ import Portfolio from './pages/Portfolio';
 import ProjectDetail from './pages/ProjectDetail';
 import AboutMe from './pages/AboutMe';
 import Contact from './pages/Contact';
-// Importaremos ProjectDetail más adelante
+import ScrollProgress from './components/ScrollProgress';
+import CursorSpotlight from './components/CursorSpotlight';
+import PageTransition from './components/PageTransition';
 import './App.css';
 
 const App: React.FC = () => {
   return (
     <Router>
       <div className="app-container">
-        {/* Navbar eliminado para que solo aparezca en Home */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/trabajos/:id" element={<ProjectDetail />} />
-          <Route path="/quienes-somos" element={<AboutMe />} />
-          <Route path="/contacto" element={<Contact />} />
-        </Routes>
+        <ScrollProgress />
+        <CursorSpotlight />
+        <PageTransition>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/trabajos/:id" element={<ProjectDetail />} />
+            <Route path="/quienes-somos" element={<AboutMe />} />
+            <Route path="/contacto" element={<Contact />} />
+          </Routes>
+        </PageTransition>
         <Footer />
       </div>
     </Router>

@@ -1,4 +1,5 @@
 @import './styles/base.css';
+@import './styles/overlays.css';
 @import './styles/navbar.css';
 @import './styles/footer.css';
 @import './styles/home.css';

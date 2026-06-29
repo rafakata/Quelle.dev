@@ -1,22 +1,74 @@
 import React, { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import PersonalCard from '../components/PersonalCard';
-import StoryBlock from '../components/StoryBlock';
-import ExperienceItem from '../components/ExperienceItem';
+import { useReveal } from '../hooks/useReveal';
+
+const STATS = [
+  { value: '7+',  label: 'Proyectos públicos' },
+  { value: '19',  label: 'Tecnologías' },
+  { value: '2',   label: 'Años en código' },
+  { value: '∞',   label: 'Curiosidad' }
+];
+
+const TIMELINE = [
+  {
+    year: '2019',
+    title: 'Grado en Historia',
+    subtitle: 'Formación humanista · análisis',
+    description:
+      'Investigar fuentes masivas, encontrar patrones en el caos y entender el comportamiento humano. La base analítica que hoy aplico a UX y debugging.'
+  },
+  {
+    year: '2023',
+    title: 'Vendedor & Encargado · Arte y Estilo',
+    subtitle: 'Trato con cliente · gestión',
+    description:
+      'Años de venta directa y gestión de inventarios. Aprendí la habilidad más importante en IT: escuchar al cliente y traducir su necesidad en una solución real.'
+  },
+  {
+    year: '2024',
+    title: 'Entrenador F7 · Olímpica Victoriana',
+    subtitle: 'Liderazgo · planificación',
+    description:
+      'Coordinar equipos y familias me dio la mecánica del liderazgo positivo. Un equipo de fútbol y uno de desarrollo comparten núcleo: estrategia bajo presión y un objetivo común.'
+  },
+  {
+    year: '2025',
+    title: 'DAW · Desarrollo Web Fullstack',
+    subtitle: 'React · Node · PHP · SQL',
+    description:
+      'Convertí la capacidad analítica en construcción. No solo escribo código: documento procesos, diseño arquitecturas escalables y pienso en su evolución.'
+  },
+  {
+    year: '2026',
+    title: 'Marketing Digital · Generación Digital',
+    subtitle: 'KPIs · estrategia · transformación',
+    description:
+      'Una web es una herramienta de negocio. Entender contenidos, métricas y digitalización me permite construir productos que aportan valor real, no solo bonitos.'
+  }
+];
 
 const AboutMe: React.FC = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' });
   }, []);
 
+  const [heroRef, heroVisible]      = useReveal<HTMLDivElement>({ threshold: 0.2 });
+  const [statsRef, statsVisible]    = useReveal<HTMLDivElement>({ threshold: 0.2 });
+  const [storyRef, storyVisible]    = useReveal<HTMLDivElement>({ threshold: 0.1 });
+  const [timelineRef, timelineVisible] = useReveal<HTMLDivElement>({ threshold: 0.05 });
+
   return (
     <>
       <Navbar />
       <main className="main-bg about-me-page">
         <div className="container-about">
-          
-          {/* Cabecera de la sección */}
-          <section className="about-hero">
+
+          <section
+            ref={heroRef}
+            className={`about-hero reveal-up ${heroVisible ? 'is-visible' : ''}`}
+          >
+            <span className="about-eyebrow">// Sobre mí</span>
             <h1 className="about-main-title">
               Detrás del <span className="highlight-lime">código</span>
             </h1>
@@ -25,8 +77,23 @@ const AboutMe: React.FC = () => {
             </p>
           </section>
 
+          {/* KPIs animados */}
+          <section
+            ref={statsRef}
+            className={`about-stats stagger ${statsVisible ? 'is-visible' : ''}`}
+          >
+            {STATS.map((stat) => (
+              <div
+                key={stat.label}
+                className={`about-stat reveal-up ${statsVisible ? 'is-visible' : ''}`}
+              >
+                <span className="about-stat__value">{stat.value}</span>
+                <span className="about-stat__label">{stat.label}</span>
+              </div>
+            ))}
+          </section>
+
           <div className="about-grid">
-            {/* Lado Izquierdo: Datos Personales */}
             <div className="about-personal">
               <PersonalCard
                 photo="/assets/projects/fotoperfil.png"
@@ -36,66 +103,108 @@ const AboutMe: React.FC = () => {
               />
             </div>
 
-            {/* Lado Derecho: Historia y Formación */}
-            <div className="about-story">
-              <StoryBlock title="¿Por qué quelle.dev?" highlight>
+            <div
+              ref={storyRef}
+              className={`about-story stagger ${storyVisible ? 'is-visible' : ''}`}
+            >
+              {/* Quote pull-out destacado */}
+              <blockquote
+                className={`about-quote reveal-up ${storyVisible ? 'is-visible' : ''}`}
+              >
+                <span className="about-quote__mark" aria-hidden="true">“</span>
                 <p>
-                  Quelle.dev es mi forma de decir que la tecnología no debería ser fría. Mi formación humanista me permite 
-                  comunicarme con clientes de pymes malagueñas de forma clara, sin tecnicismos innecesarios, traduciendo 
-                  sus necesidades de negocio a un software robusto y con visión comercial.
+                  La tecnología no debería ser fría. Mi formación humanista me
+                  permite hablar con clientes de pymes malagueñas sin
+                  tecnicismos, traduciendo su necesidad de negocio en software
+                  con visión comercial.
                 </p>
-              </StoryBlock>
-              <StoryBlock dividerTitle="Estudios" title="Grado en Historia">
-                <p>
-                  Muchos se preguntan qué hace un, casi, historiador en el mundo del desarrollo Fullstack. La respuesta es sencilla: 
-                  <strong> análisis</strong>. La carrera me enseñó a investigar fuentes masivas, encontrar patrones en el caos 
-                  y, sobre todo, a entender el comportamiento humano. En el entorno tech, esto se traduce en una capacidad 
-                  analítica superior para resolver bugs complejos y una sensibilidad especial para la UX/UI.
-                </p>
-              </StoryBlock>
-              <StoryBlock title="Desarrollo de Aplicaciones Web (DAW)">
-                <p>
-                  Aquí es donde mi capacidad de análisis se convirtió en construcción. No me limito al ecosistema de 
-                  <strong> JavaScript y TypeScript</strong> con React y Node.js; mi formación abarca desde el desarrollo 
-                  backend robusto con <strong>PHP</strong> hasta la gestión avanzada de bases de datos <strong>SQL (MySQL, SQLite)</strong>. 
-                  He trasteado con integraciones modernas en <strong>Firebase</strong> y estructurado arquitecturas escalables bajo el patrón DAO. 
-                  No solo escribo líneas de código; documento procesos y diseño soluciones pensando en su evolución técnica.
-                </p>
-              </StoryBlock>
-              <StoryBlock title="Marketing y Transformación Digital">
-                <p>
-                  Para complementar mi perfil técnico, me he especializado con el curso de <strong>Marketing Digital y E-Commerce</strong> 
-                  y el programa de <strong>Generación Digital: Agentes del Cambio</strong>. Entiendo que una web no es un ente aislado, 
-                  sino una herramienta de negocio que requiere estrategia de contenidos, análisis de KPIs y una digitalización real
-                  de los procesos para aportar valor de verdad.
-                </p>
-              </StoryBlock>
-              <StoryBlock dividerTitle="Experiencia laboral">
-                <ExperienceItem title="Vendedor y Encargado • Arte y Estilo">
-                  <p>
-                    Años de trato directo con el público y gestión de inventarios. Aquí aprendí la habilidad más importante en IT: 
-                    <strong> saber escuchar al cliente</strong>. Traducir una necesidad estética en una venta real me dio la 
-                    capacidad de persuasión y resolución que hoy aplico al plantear soluciones web comerciales.
-                  </p>
-                </ExperienceItem>
-                <ExperienceItem title="Entrenador de Fútbol 7 • Olímpica Victoriana">
-                  <p>
-                    Liderar equipos y coordinar con familias requiere <strong>planificación meticulosa y liderazgo positivo</strong>. 
-                    Un equipo de fútbol y un equipo de desarrollo comparten el mismo núcleo: coordinación, estrategia bajo presión 
-                    y un objetivo común claro.
-                  </p>
-                </ExperienceItem>
-              </StoryBlock>
-              <StoryBlock dividerTitle="En mi tiempo libre">
-                <p className="desenfadado-text">
-                  Si no me ves "trasteando" con alguna librería nueva o investigando el porqué de alguna cosa por pura curiosidad, 
-                  probablemente me encuentres viendo al <strong>Málaga CF</strong> (sí, sufriendo, pero ahí estamos), en el gimnasio, jugando a 
-                  videojuegos o leyendo algún cómic. Me pierdo por un buen libro, una serie que enganche o una película de las que 
-                  te dejan pensando. Soy una persona muy sociable, de los que piensan que con buen humor se trabaja mejor. 
-                  ¡Siempre con ganas de aprender algo nuevo y ver qué hay debajo del capó!
-                </p>
-              </StoryBlock>
+                <footer>— Rafael, sobre por qué nació <strong>quelle.dev</strong></footer>
+              </blockquote>
 
+              <article
+                className={`story-block reveal-up ${storyVisible ? 'is-visible' : ''}`}
+              >
+                <h3>Grado en Historia</h3>
+                <p>
+                  Muchos se preguntan qué hace un, casi, historiador en el
+                  mundo del desarrollo Fullstack. La respuesta es sencilla:
+                  <strong> análisis</strong>. La carrera me enseñó a investigar
+                  fuentes masivas, encontrar patrones en el caos y, sobre todo,
+                  a entender el comportamiento humano. En el entorno tech esto
+                  se traduce en capacidad analítica para bugs complejos y
+                  sensibilidad para UX/UI.
+                </p>
+              </article>
+
+              <article
+                className={`story-block reveal-up ${storyVisible ? 'is-visible' : ''}`}
+              >
+                <h3>Desarrollo de Aplicaciones Web (DAW)</h3>
+                <p>
+                  Aquí mi capacidad de análisis se convirtió en construcción.
+                  No me limito al ecosistema de <strong>JavaScript y TypeScript</strong>
+                  con React y Node.js; mi formación abarca desde el backend
+                  con <strong>PHP</strong> hasta la gestión avanzada de
+                  <strong> SQL (MySQL, SQLite)</strong>. He trasteado con
+                  integraciones en <strong>Firebase</strong> y estructurado
+                  arquitecturas escalables bajo el patrón DAO. No solo escribo
+                  líneas de código; documento procesos y diseño soluciones
+                  pensando en su evolución técnica.
+                </p>
+              </article>
+
+              <article
+                className={`story-block reveal-up ${storyVisible ? 'is-visible' : ''}`}
+              >
+                <h3>Marketing y Transformación Digital</h3>
+                <p>
+                  Para complementar mi perfil técnico, me he especializado con
+                  el curso de <strong>Marketing Digital y E-Commerce</strong> y
+                  el programa de <strong>Generación Digital: Agentes del
+                  Cambio</strong>. Una web no es un ente aislado, sino una
+                  herramienta de negocio que requiere estrategia de contenidos,
+                  análisis de KPIs y digitalización real de los procesos.
+                </p>
+              </article>
+
+              {/* Timeline visual de mi recorrido */}
+              <h2 className="section-divider-title">Mi recorrido</h2>
+              <div
+                ref={timelineRef}
+                className={`timeline stagger ${timelineVisible ? 'is-visible' : ''}`}
+              >
+                {TIMELINE.map((item, idx) => (
+                  <div
+                    key={item.year}
+                    className={`timeline__item reveal-up ${timelineVisible ? 'is-visible' : ''}`}
+                  >
+                    <span className="timeline__dot" aria-hidden="true" />
+                    <span className="timeline__year">{item.year}</span>
+                    <div className="timeline__content">
+                      <h4 className="timeline__title">
+                        <span className="timeline__title-num">{String(idx + 1).padStart(2, '0')} ·</span>
+                        {item.title}
+                      </h4>
+                      <span className="timeline__subtitle">{item.subtitle}</span>
+                      <p className="timeline__desc">{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <article className={`story-block reveal-up ${storyVisible ? 'is-visible' : ''}`}>
+                <h3>En mi tiempo libre</h3>
+                <p className="desenfadado-text">
+                  Si no me ves "trasteando" con alguna librería nueva o
+                  investigando el porqué de alguna cosa por pura curiosidad,
+                  probablemente me encuentres viendo al <strong>Málaga CF</strong>
+                  {' '}(sí, sufriendo, pero ahí estamos), en el gimnasio, jugando
+                  a videojuegos o leyendo algún cómic. Me pierdo por un buen
+                  libro, una serie que enganche o una película de las que te
+                  dejan pensando. Soy una persona muy sociable, de los que
+                  piensan que con buen humor se trabaja mejor.
+                </p>
+              </article>
             </div>
           </div>
         </div>

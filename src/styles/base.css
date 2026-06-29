@@ -1,10 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
+/* ───────────────────────────────────────────────
+   Paleta y variables base (NO TOCAR colores)
+─────────────────────────────────────────────── */
 :root {
   --q-lime: #cbff31;
   --q-green: #8ad45d;
   --q-black: #000000;
   --q-white: #f4f4f4;
+
+  /* Tokens de superficie derivados (sin colores nuevos) */
+  --q-surface-1: #0a0a0a;
+  --q-surface-2: #111111;
+  --q-border: #1f1f1f;
+  --q-muted: #9a9a9a;
+
+  /* Ritmo, radios y sombras */
+  --q-radius-sm: 12px;
+  --q-radius-md: 18px;
+  --q-radius-lg: 28px;
+  --q-shadow-lime: 0 10px 40px rgba(203, 255, 49, 0.18);
+  --q-shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.45);
+
+  /* Easing reutilizable */
+  --q-ease: cubic-bezier(0.2, 0.65, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 html {
@@ -15,6 +38,9 @@ body {
   margin: 0;
   font-family: 'Poppins', Arial, sans-serif;
   background: var(--q-black);
+  color: var(--q-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 #root {
@@ -24,6 +50,7 @@ body {
 .app-container {
   width: 100%;
   min-height: 100vh;
+  overflow-x: clip; /* evita scroll horizontal por glows/blobs decorativos */
 }
 
 .content-section {
@@ -31,13 +58,19 @@ body {
 }
 
 .main-bg {
-  background: #000;
+  background: var(--q-black);
+  position: relative;
 }
 
-.highlight-lime {
-  color: var(--q-lime);
+/* Selección de texto coherente con la marca */
+::selection {
+  background: var(--q-lime);
+  color: var(--q-black);
 }
 
+/* ───────────────────────────────────────────────
+   Logo (NO TOCAR estilos internos)
+─────────────────────────────────────────────── */
 .logo-block {
   display: flex;
   flex-direction: column;
@@ -58,6 +91,16 @@ body {
   text-align: center;
 }
 
+/* ───────────────────────────────────────────────
+   Helpers de color (semánticos)
+─────────────────────────────────────────────── */
+.highlight-lime {
+  color: var(--q-lime);
+}
+
+/* ───────────────────────────────────────────────
+   Animaciones globales reutilizables
+─────────────────────────────────────────────── */
 @keyframes fadeUp {
   0% {
     opacity: 0;
@@ -72,4 +115,120 @@ body {
 .fade-up {
   opacity: 0;
   animation: fadeUp 1.2s cubic-bezier(0.4, 0.2, 0.2, 1) forwards;
+}
+
+/* Reveals genéricos por IntersectionObserver */
+.reveal-up,
+.reveal-left,
+.reveal-right,
+.reveal-zoom {
+  opacity: 0;
+  transition: opacity 0.95s var(--q-ease), transform 0.95s var(--q-ease);
+  will-change: opacity, transform;
+}
+
+.reveal-up {
+  transform: translateY(28px);
+}
+
+.reveal-left {
+  transform: translateX(-32px);
+}
+
+.reveal-right {
+  transform: translateX(32px);
+}
+
+.reveal-zoom {
+  transform: scale(0.96);
+}
+
+.reveal-up.is-visible,
+.reveal-left.is-visible,
+.reveal-right.is-visible,
+.reveal-zoom.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger genérico — el padre marca delay incremental a sus hijos .reveal-* */
+.stagger > *:nth-child(1) { transition-delay: 0.05s; }
+.stagger > *:nth-child(2) { transition-delay: 0.15s; }
+.stagger > *:nth-child(3) { transition-delay: 0.25s; }
+.stagger > *:nth-child(4) { transition-delay: 0.35s; }
+.stagger > *:nth-child(5) { transition-delay: 0.45s; }
+.stagger > *:nth-child(6) { transition-delay: 0.55s; }
+.stagger > *:nth-child(7) { transition-delay: 0.65s; }
+.stagger > *:nth-child(8) { transition-delay: 0.75s; }
+
+/* ───────────────────────────────────────────────
+   Separadores SVG entre secciones
+─────────────────────────────────────────────── */
+.section-glow-divider {
+  position: relative;
+  height: 1px;
+  width: min(720px, 80%);
+  margin: 0 auto;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--q-lime) 50%,
+    transparent 100%
+  );
+  opacity: 0.55;
+}
+
+.section-glow-divider::after {
+  content: '';
+  position: absolute;
+  inset: -3px 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(203, 255, 49, 0.35) 50%,
+    transparent 100%
+  );
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+/* ───────────────────────────────────────────────
+   Background ambient — ruido + grid decorativos
+─────────────────────────────────────────────── */
+.ambient-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(203, 255, 49, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(203, 255, 49, 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at 50% 30%, #000 35%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 35%, transparent 75%);
+  opacity: 0.45;
+  z-index: 0;
+}
+
+/* Halo verde sutil — usado como decoración detrás de secciones */
+.ambient-glow {
+  position: absolute;
+  width: 540px;
+  height: 540px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(203, 255, 49, 0.18) 0%, transparent 60%);
+  filter: blur(20px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Respeta usuarios con preferencia de reducir movimiento */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

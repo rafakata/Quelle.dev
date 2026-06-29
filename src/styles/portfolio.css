@@ -1,113 +1,330 @@
+/* ════════════════════════════════════════════════
+   PORTFOLIO — Bento grid + filtros
+════════════════════════════════════════════════ */
 .portfolio-page {
-  padding-top: 48px;
+  padding-top: 6rem;
+  padding-bottom: 4rem;
   min-height: 80vh;
+  position: relative;
+}
+
+.portfolio-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(203, 255, 49, 0.08) 0%, transparent 70%);
+  filter: blur(20px);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .portfolio-header {
+  position: relative;
   text-align: center;
-  padding: 2.2rem 2rem 2.5rem 2rem;
+  padding: 2rem 2rem 3rem 2rem;
+  z-index: 1;
+}
+
+.portfolio-eyebrow {
+  display: inline-block;
+  color: var(--q-lime);
+  font-family: 'TT Interphases Mono Local', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  padding: 0.4rem 1rem;
+  border: 1px solid rgba(203, 255, 49, 0.3);
+  border-radius: 50px;
+  background: rgba(203, 255, 49, 0.05);
 }
 
 .portfolio-main-title {
   color: var(--q-white);
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(2.5rem, 6vw, 4.4rem);
   font-weight: 500;
   margin-bottom: 1rem;
+  letter-spacing: -0.8px;
 }
 
 .portfolio-subtitle {
-  color: #ccc;
-  font-size: 1.2rem;
-  max-width: 600px;
+  color: #bbb;
+  font-size: 1.15rem;
+  max-width: 620px;
   margin: 0 auto;
+  line-height: 1.55;
+}
+
+/* ──── Filtros por tecnología ──── */
+.portfolio-filters-wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.portfolio-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.portfolio-filter {
+  border: 1px solid var(--q-border);
+  background: var(--q-surface-1);
+  color: #b8b8b8;
+  font-family: 'TT Interphases Mono Local', monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.55rem 1.05rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background 0.25s var(--q-ease),
+    border-color 0.25s var(--q-ease),
+    color 0.25s var(--q-ease),
+    transform 0.2s var(--q-ease);
+}
+
+.portfolio-filter:hover {
+  border-color: rgba(203, 255, 49, 0.4);
+  color: var(--q-white);
+  transform: translateY(-1px);
+}
+
+.portfolio-filter.is-active {
+  background: var(--q-lime);
+  color: var(--q-black);
+  border-color: var(--q-lime);
+  box-shadow: 0 6px 18px rgba(203, 255, 49, 0.2);
+}
+
+.portfolio-filters__count {
+  color: var(--q-muted);
+  font-family: 'TT Interphases Mono Local', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .portfolio-grid-container {
-  max-width: 1200px;
+  max-width: 1320px;
   margin: 0 auto;
   padding: 0 2rem 8rem;
+  position: relative;
+  z-index: 1;
 }
 
-.projects-grid {
+/* ──── Bento grid asimétrico ──── */
+.portfolio-bento {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: minmax(280px, auto);
+  gap: 1.6rem;
 }
 
-.project-card-link {
-  text-decoration: none;
+.portfolio-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--q-muted);
+  font-style: italic;
+  padding: 4rem 0;
 }
 
-.project-card {
-  background: linear-gradient(180deg, var(--q-lime) 0%, var(--q-green) 100%);
-  border-radius: 16px;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 100%;
+.bento {
+  position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  border-radius: var(--q-radius-md);
+  border: 1px solid var(--q-border);
+  background: var(--q-surface-1);
+  color: var(--q-white);
+  text-decoration: none;
+  isolation: isolate;
+  transition: transform 0.45s var(--q-ease),
+    border-color 0.35s var(--q-ease),
+    box-shadow 0.45s var(--q-ease);
+  min-height: 280px;
 }
 
-.project-card:hover {
+.bento::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--q-lime), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s var(--q-ease);
+  z-index: 5;
+}
+
+.bento:hover {
   transform: translateY(-8px);
-  box-shadow: 0 15px 40px rgba(203, 255, 49, 0.2);
+  border-color: rgba(203, 255, 49, 0.45);
+  box-shadow: 0 26px 50px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(203, 255, 49, 0.18);
 }
 
-.project-card-image {
-  height: 220px;
-  background-size: cover;
-  background-position: center;
-  position: relative;
+.bento:hover::before {
+  transform: translateX(100%);
 }
 
-.project-card-overlay {
+/* Featured ocupa 6 columnas (full width) y más altura */
+.bento--featured {
+  grid-column: span 6;
+  min-height: 480px;
+}
+
+/* El resto van en mitades */
+.bento--regular {
+  grid-column: span 3;
+}
+
+.bento__image {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.7s var(--q-ease);
+  z-index: 0;
 }
 
-.project-card-overlay span {
-  color: var(--q-lime);
-  font-weight: 700;
-  border: 2px solid var(--q-lime);
-  padding: 0.5rem 1.5rem;
-  border-radius: 50px;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  background: rgba(0, 0, 0, 0.7);
-  transition: background 0.2s, color 0.2s, border 0.2s;
-  cursor: pointer;
+.bento:hover .bento__image {
+  transform: scale(1.08);
 }
 
-.project-card-overlay span:hover {
+.bento__gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.65) 55%,
+    rgba(0, 0, 0, 0.95) 100%
+  );
+  z-index: 1;
+}
+
+.bento__badge {
+  position: absolute;
+  top: 1.2rem;
+  left: 1.2rem;
+  z-index: 3;
   background: var(--q-lime);
-  color: #000;
-  border: 2px solid #000;
-}
-
-.project-card:hover .project-card-overlay {
-  opacity: 1;
-}
-
-.project-card-info {
-  padding: 1.5rem;
   color: var(--q-black);
+  font-family: 'TT Interphases Mono Local', monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border-radius: 50px;
 }
 
-.project-card-title {
-  margin: 0 0 0.5rem;
-  font-size: 1.4rem;
-  font-weight: 600;
+.bento__index {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  z-index: 3;
+  font-family: 'TT Interphases Mono Local', monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--q-lime);
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(203, 255, 49, 0.35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  padding: 0.32rem 0.7rem;
+  border-radius: 50px;
+  letter-spacing: 0.06em;
 }
 
-.project-card-desc {
-  font-size: 0.95rem;
-  line-height: 1.4;
-  opacity: 0.8;
+.bento__content {
+  position: relative;
+  z-index: 2;
+  padding: 1.8rem 1.8rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.bento__title {
   margin: 0;
+  font-size: 1.9rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  color: var(--q-white);
+  transition: color 0.3s var(--q-ease);
+}
+
+.bento__title--sm {
+  font-size: 1.3rem;
+}
+
+.bento:hover .bento__title {
+  color: var(--q-lime);
+}
+
+.bento__desc {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: #c5c5c5;
+  max-width: 70ch;
+}
+
+.bento__desc--sm {
+  font-size: 0.94rem;
+}
+
+.bento__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.3rem;
+}
+
+.bento__tag {
+  font-family: 'TT Interphases Mono Local', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: var(--q-lime);
+  background: rgba(203, 255, 49, 0.1);
+  border: 1px solid rgba(203, 255, 49, 0.3);
+  padding: 0.28rem 0.7rem;
+  border-radius: 50px;
+}
+
+.bento__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+  color: var(--q-lime);
+  font-family: 'TT Interphases Mono Local', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: gap 0.3s var(--q-ease);
+}
+
+.bento__cta--sm {
+  font-size: 0.78rem;
+}
+
+.bento:hover .bento__cta {
+  gap: 0.85rem;
 }
