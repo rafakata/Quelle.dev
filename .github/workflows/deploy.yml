@@ -25,11 +25,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'npm' # Cambiamos a cache 'npm' para que sea compatible
+          # Esto configura pnpm automáticamente en el PATH
+          cache: 'pnpm' 
 
-      # Instalamos pnpm de forma explícita y global
-      - name: Install pnpm
-        run: npm install -g pnpm
+      # Forzamos la instalación de pnpm mediante corepack (nativo de Node)
+      - name: Enable Corepack
+        run: corepack enable
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
