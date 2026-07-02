@@ -37,6 +37,9 @@ jobs:
 
       - name: Build
         run: pnpm run build
+        # AÑADIDO: Pasamos la variable de entorno para que Vite sepa la ruta base
+        env:
+          VITE_BASE_PATH: '/${{ github.event.repository.name }}/'
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
