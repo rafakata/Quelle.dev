@@ -24,20 +24,22 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: pnpm
+          # Usamos Node 22 para evitar el aviso de deprecación
+          node-version: 22 
+          cache: 'pnpm'
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 10
+          # Esta opción asegura que pnpm se configure correctamente en el entorno
+          run_install: false 
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Build
         run: pnpm run build
-        # AÑADIDO: Pasamos la variable de entorno para que Vite sepa la ruta base
         env:
           VITE_BASE_PATH: '/${{ github.event.repository.name }}/'
 
@@ -51,6 +53,7 @@ jobs:
 
   deploy:
     environment:
+      # GitHub crea automáticamente este entorno la primera vez
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
