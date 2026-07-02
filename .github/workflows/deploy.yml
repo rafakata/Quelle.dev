@@ -24,16 +24,12 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          # Usamos Node 22 para evitar el aviso de deprecación
-          node-version: 22 
+          node-version: 22
           cache: 'pnpm'
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-          # Esta opción asegura que pnpm se configure correctamente en el entorno
-          run_install: false 
+      # Esta es la forma más segura de configurar pnpm en Actions
+      - name: Install pnpm
+        run: corepack enable && corepack prepare pnpm@latest --activate
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -53,7 +49,6 @@ jobs:
 
   deploy:
     environment:
-      # GitHub crea automáticamente este entorno la primera vez
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
