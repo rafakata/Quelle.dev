@@ -745,11 +745,13 @@
 }
 
 .tech-marquee__pill {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
   border: 1px solid rgba(203, 255, 49, 0.32);
   background: rgba(203, 255, 49, 0.04);
   color: var(--q-white);
-  padding: 0.65rem 1.8rem;
+  padding: 0.65rem 1.3rem;
   border-radius: 50px;
   font-size: 1rem;
   font-family: 'TT Interphases Mono Local', monospace;
@@ -761,6 +763,12 @@
     transform 0.25s var(--q-ease);
 }
 
+.tech-marquee__icon {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 1rem;
+  line-height: 1;
+}
+
 .tech-marquee__pill:hover {
   background: var(--q-lime);
   color: var(--q-black);
@@ -769,16 +777,28 @@
   cursor: default;
 }
 
+.tech-marquee__pill:hover .tech-marquee__icon {
+  color: var(--q-black);
+}
+
 .tech-marquee__pill--ghost {
   background: transparent;
   color: #b8b8b8;
   border-color: rgba(255, 255, 255, 0.08);
 }
 
+.tech-marquee__pill--ghost .tech-marquee__icon {
+  color: rgba(255, 255, 255, 0.72);
+}
+
 .tech-marquee__pill--ghost:hover {
-  background: var(--q-green);
+  background: var(--q-lime);
   color: var(--q-black);
-  border-color: var(--q-green);
+  border-color: var(--q-lime);
+}
+
+.tech-marquee__pill--ghost:hover .tech-marquee__icon {
+  color: var(--q-black);
 }
 
 /* Pausa los marquees al hover */

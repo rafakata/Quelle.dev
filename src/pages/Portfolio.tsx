@@ -3,6 +3,7 @@ import projectsData from '../data/projects.json';
 import Navbar from '../components/Navbar';
 import { useReveal } from '../hooks/useReveal';
 import { Link } from 'react-router-dom';
+import { assetUrl } from '../utils/assetUrl';
 
 const ALL_TAG = 'Todos';
 
@@ -122,7 +123,7 @@ const FeaturedCard: React.FC<{
   >
     <div
       className="bento__image"
-      style={{ backgroundImage: `url(${project.image})` }}
+      style={{ backgroundImage: `url(${assetUrl(project.image)})` }}
     />
     <div className="bento__gradient" />
     <span className="bento__badge">★ Destacado</span>
@@ -156,7 +157,7 @@ const BentoCard: React.FC<{
   >
     <div
       className="bento__image"
-      style={{ backgroundImage: `url(${project.image})` }}
+      style={{ backgroundImage: `url(${assetUrl(project.image)})` }}
     />
     <div className="bento__gradient" />
     <span className="bento__index">/ {String(index + 1).padStart(2, '0')}</span>

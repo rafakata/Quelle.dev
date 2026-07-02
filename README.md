@@ -54,19 +54,19 @@ La plataforma está estructurada técnicamente para ofrecer una experiencia de u
 
 Comandos definidos en el `package.json` para la gestión del ciclo de vida del proyecto:
 
-### `npm run dev`
+### `pnpm dev`
 
 Inicia el entorno de desarrollo local con Vite.
 
-### `npm run build`
+### `pnpm build`
 
 Ejecuta la comprobación de tipos de TypeScript (`tsc -b`) y compila para producción.
 
-### `npm run lint`
+### `pnpm lint`
 
 Ejecuta ESLint 9 para asegurar la calidad del código y el cumplimiento de reglas de React.
 
-### `npm run preview`
+### `pnpm preview`
 
 Previsualiza localmente el build de producción generado.
 

@@ -34,13 +34,11 @@
   cursor: pointer;
   border-radius: 12px;
   padding: 0.2rem 0.4rem;
-  transition: transform 0.25s var(--q-ease),
-    background 0.25s var(--q-ease);
+  transition: transform 0.25s var(--q-ease);
 }
 
 .footer-logo-wrap:hover {
   transform: translateY(-2px);
-  background: rgba(0, 0, 0, 0.05);
 }
 
 .footer-logo-wrap:focus-visible {
@@ -87,14 +85,14 @@
 }
 
 .footer-link-text:hover {
-  padding-left: 0.7rem;
+  padding-left: 1.2rem;
   color: var(--q-black);
 }
 
 .footer-link-text::before {
   content: '→';
   position: absolute;
-  left: 0;
+  left: 0.1rem;
   opacity: 0;
   transition: opacity 0.25s var(--q-ease);
 }

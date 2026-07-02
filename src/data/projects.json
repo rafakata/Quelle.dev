@@ -4,9 +4,9 @@
     "title": "PaparcApp",
     "description": "Sistema integral de gestión de reservas de parking y servicios para vehículos.",
     "longDescription": "PaparcApp es una aplicación web completa diseñada para la gestión de plazas de aparcamiento y servicios adicionales. Cuenta con un sistema de autenticación robusto, integración con Firebase para la gestión de usuarios, y un panel de administración para el control de precios dinámicos y estados de ocupación. Es uno de mis proyectos más ambiciosos en cuanto a lógica de negocio.\n\nPara información más detallada del proyecto visita el repositorio de GitHub.",
-    "image": "/assets/projects/paparcapp.jpeg",
+    "image": "projects/paparcapp.jpeg",
     "github": "https://github.com/rafakata/paparcapp",
-    "deploy": "https://paparcapp.onrender.com",
+    "deploy": "https://paparcapp-azby.onrender.com/",
     "technologies": ["Node.js", "Express", "Firebase", "SQL", "EJS", "JavaScript"]
   },
   {
@@ -14,7 +14,7 @@
     "title": "Galería Gamer",
     "description": "Comunidad interactiva para entusiastas de los videojuegos con gestión de base de datos.",
     "longDescription": "Este proyecto permite a los usuarios explorar una base de datos de videojuegos, gestionar sus favoritos y visualizar detalles técnicos. Implementa una arquitectura DAO (Data Access Object) para interactuar con SQLite, garantizando un código limpio y modular. Incluye validaciones de seguridad con bcryptjs.\n\nPara información más detallada del proyecto visita el repositorio de GitHub.",
-    "image": "/assets/projects/galeriagamer.jpeg",
+    "image": "projects/galeriagamer.jpeg",
     "github": "https://github.com/rafakata/galeriagamer",
     "deploy": "https://galeriagamer.onrender.com",
     "technologies": ["Node.js", "Express", "SQLite", "DAO Pattern", "Bcrypt", "CSS3"]
@@ -24,7 +24,7 @@
     "title": "The Cinema Vault",
     "description": "Plataforma de catálogo cinematográfico con renderizado dinámico.",
     "longDescription": "Aplicación enfocada en la experiencia de usuario para la navegación de películas. Utiliza un sistema de gestión de datos mediante JSON local para simular una base de datos, permitiendo un rendimiento ágil y un escalado sencillo. Fue clave para perfeccionar mis habilidades en rutas dinámicas.\n\nPara información más detallada del proyecto visita el repositorio de GitHub.",
-    "image": "/assets/projects/cinemavault.jpeg",
+    "image": "projects/cinemavault.jpeg",
     "github": "https://github.com/rafakata/thecinemavault",
     "deploy": "https://thecinemavault.onrender.com",
     "technologies": ["Node.js", "Express", "JSON Storage", "EJS", "Bootstrap"]
@@ -34,7 +34,7 @@
     "title": "PaTrackeApp",
     "description": "Herramienta de geolocalización de zonas de aparcamiento.",
     "longDescription": "Aplicación diseñada para resolver problemas reales de movilidad urbana. Implementa mapas interactivos mediante librerías de cliente para mostrar zonas de parking en tiempo real. Utiliza SQLite como motor de persistencia para guardar localizaciones y preferencias de usuario.\n\nPara información más detallada del proyecto visita el repositorio de GitHub.",
-    "image": "/assets/projects/patrackeapp.png",
+    "image": "projects/patrackeapp.png",
     "github": "https://github.com/rafakata/patrackeapp",
     "deploy": "https://patrackeapp.onrender.com",
     "technologies": ["Node.js", "Express", "SQLite", "Leaflet/Maps API", "JavaScript"]
@@ -44,9 +44,9 @@
     "title": "Pokedex",
     "description": "Enciclopedia digital de Pokémon con consumo de datos estructurados.",
     "longDescription": "Desarrollo de una interfaz visual para la consulta de datos de Pokémon. El proyecto destaca por su capacidad de filtrar información compleja y presentarla de forma visualmente atractiva, manejando grandes volúmenes de datos en formato JSON de manera eficiente.\n\nPara información más detallada del proyecto visita el repositorio de GitHub.",
-    "image": "/assets/projects/pokedex.jpeg",
+    "image": "projects/pokedex.jpeg",
     "github": "https://github.com/rafakata/pokedex",
-    "deploy": "https://pokedex-rafa.onrender.com",
+    "deploy": "https://pokedex-1f0w.onrender.com",
     "technologies": ["Node.js", "Express", "EJS", "JSON Manipulation", "CSS Grid"]
   },
   {
@@ -54,7 +54,7 @@
     "title": "Examen Monumentos (11M)",
     "description": "Proyecto de despliegue rápido centrado en geolocalización y mapas.",
     "longDescription": "Desarrollado íntegramente en 1 hora bajo condiciones de examen. El reto consistió en crear una plataforma funcional que leyera datos GeoJSON de monumentos históricos y los proyectara en un mapa interactivo, incluyendo el despliegue inmediato en producción.\n\nPara información más detallada del proyecto visita el repositorio de GitHub.",
-    "image": "/assets/projects/examen11m.png",
+    "image": "projects/examen11m.png",
     "github": "https://github.com/rafakata/examen11m",
     "deploy": "https://examen11m.onrender.com",
     "technologies": ["GeoJSON", "Mapbox/Leaflet", "Express", "Fast Deployment"]
@@ -64,7 +64,7 @@
     "title": "Examen Final 1911",
     "description": "Prueba técnica integral de desarrollo web y manejo de rutas.",
     "longDescription": "Examen final de entorno de servidor realizado en 60 minutos. El proyecto demuestra solidez en la configuración de servidores Node.js, gestión de rutas de usuario y cumplimiento de directrices de diseño específicas bajo tiempos de entrega críticos.\n\nPara información más detallada del proyecto visita el repositorio de GitHub.",
-    "image": "/assets/projects/examen1911.jpeg",
+    "image": "projects/examen1911.jpeg",
     "github": "https://github.com/rafakata/examen1911final",
     "deploy": "https://examen1911final.onrender.com",
     "technologies": ["Node.js", "Express", "Server-side Rendering", "Responsive Design"]

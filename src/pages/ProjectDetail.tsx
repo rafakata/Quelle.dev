@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import projectsData from '../data/projects.json';
 import Navbar from '../components/Navbar';
 import { useReveal } from '../hooks/useReveal';
+import { assetUrl } from '../utils/assetUrl';
 
 const ProjectDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -22,7 +23,7 @@ const ProjectDetail: React.FC = () => {
 
   if (!project) return null;
 
-  const imageUrl = project.image;
+  const imageUrl = assetUrl(project.image);
 
   const handleBack = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();

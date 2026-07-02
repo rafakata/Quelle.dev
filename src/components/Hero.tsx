@@ -9,7 +9,7 @@ const FULL_TITLE = 'Soluciones web que hablan el idioma de tu negocio.';
 
 const STATS = [
   { value: '7+', label: 'Proyectos' },
-  { value: '19', label: 'Tecnologías' },
+  { value: '20+', label: 'Tecnologías' },
   { value: 'Málaga', label: 'Base · 2026' },
   { value: 'Fullstack', label: 'Stack · DAW' }
 ];

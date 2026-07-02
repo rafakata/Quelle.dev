@@ -292,6 +292,43 @@
   font-weight: 600;
 }
 
+.experience-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+
+.experience-card {
+  padding: 1.2rem 1.25rem;
+  border-radius: var(--q-radius-md);
+  border: 1px solid rgba(203, 255, 49, 0.16);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0.18) 100%);
+}
+
+.experience-card__period {
+  display: inline-block;
+  margin-bottom: 0.6rem;
+  color: var(--q-lime);
+  font-family: 'TT Interphases Mono Local', monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.experience-card h4 {
+  margin: 0 0 0.65rem;
+  color: var(--q-white);
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+.experience-card p {
+  margin: 0;
+  color: #cfcfcf;
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
 /* Highlight block legacy — sigue funcionando */
 .highlight-block {
   position: relative;

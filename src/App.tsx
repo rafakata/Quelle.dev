@@ -13,8 +13,10 @@ import PageTransition from './components/PageTransition';
 import './App.css';
 
 const App: React.FC = () => {
+  const basename = import.meta.env.BASE_URL !== '/' ? import.meta.env.BASE_URL : undefined;
+
   return (
-    <Router>
+    <Router basename={basename}>
       <div className="app-container">
         <ScrollProgress />
         <CursorSpotlight />
